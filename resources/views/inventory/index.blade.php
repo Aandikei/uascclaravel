@@ -1,41 +1,43 @@
 @extends('layouts.admin')
 
-@section('title', 'Data Mahasiswa')
+@section('title', 'Data Inventory')
 
 @section('content')
     <div class="card shadow-sm border-0">
         <div class="card-body">
 
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4 class="mb-0">Data Mahasiswa</h4>
-                <a href="{{ route('mahasiswa.create') }}" class="btn btn-primary">
-                    + Tambah Mahasiswa
+                <h4 class="mb-0">Data Inventory</h4>
+                <a href="{{ route('inventory.create') }}" class="btn btn-primary">
+                    + Tambah Inventory
                 </a>
             </div>
 
             <table class="table table-hover align-middle">
                 <thead class="table-light">
                     <tr>
-                        <th>NIM</th>
                         <th>Nama</th>
-                        <th>Email</th>
-                        <th>Jenis Kelamin</th>
-                        <th>Alamat</th>
+                        <th>Kode</th>
+                        <th>Stok</th>
+                        <th>Lokasi</th>
+                        <th>Kondisi</th>
+                        <th>Petugas</th>
                         <th width="120">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($mahasiswa as $mhs)
+                    @foreach ($inventory as $inv)
                         <tr>
-                            <td>{{ $mhs->nim }}</td>
-                            <td>{{ $mhs->nama }}</td>
-                            <td>{{ $mhs->email }}</td>
-                            <td>{{ $mhs->jk }}</td>
-                            <td>{{ $mhs->alamat }}</td>
+                            <td>{{ $inv->nama }}</td>
+                            <td>{{ $inv->kode }}</td>
+                            <td>{{ $inv->stok }}</td>
+                            <td>{{ $inv->lokasi }}</td>
+                            <td>{{ $inv->kondisi }}</td>
+                            <td>{{ $inv->petugas }}</td>
                             <td class="d-flex gap-1">
-                                <a href="{{ route('mahasiswa.edit', $mhs->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{{ route('inventory.edit', $inv->id) }}" class="btn btn-sm btn-warning">Edit</a>
 
-                                <form method="POST" action="{{ route('mahasiswa.destroy', $mhs->id) }}">
+                                <form method="POST" action="{{ route('inventory.destroy', $inv->id) }}">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus?')">
